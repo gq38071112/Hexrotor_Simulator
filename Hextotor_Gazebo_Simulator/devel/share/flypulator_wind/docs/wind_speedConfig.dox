@@ -1,0 +1,8 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~velx" : \b [double] the speed of windx min: -200.0, default: 0.0, max: 200.0
+- \b "~vely" : \b [double] the speed of windy min: -200.0, default: 0.0, max: 200.0
+- \b "~velz" : \b [double] the speed of windz min: -200.0, default: 0.0, max: 200.0
+

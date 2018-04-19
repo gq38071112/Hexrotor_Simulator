@@ -1,0 +1,9 @@
+\subsubsection usage Usage
+\verbatim
+<node name="drone" pkg="drone" type="drone">
+  <param name="velx" type="double" value="0.0" />
+  <param name="vely" type="double" value="0.0" />
+  <param name="velz" type="double" value="0.0" />
+</node>
+\endverbatim
+

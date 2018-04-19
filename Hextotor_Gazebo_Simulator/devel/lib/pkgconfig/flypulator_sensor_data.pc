@@ -1,0 +1,8 @@
+prefix=/home/avalon/catkin_ws/devel
+
+Name: flypulator_sensor_data
+Description: Description of flypulator_sensor_data
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/avalon/catkin_ws/devel/lib 
+Requires: 

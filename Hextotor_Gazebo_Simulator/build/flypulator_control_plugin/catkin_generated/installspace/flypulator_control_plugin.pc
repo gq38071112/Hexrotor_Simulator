@@ -1,0 +1,8 @@
+prefix=/home/avalon/catkin_ws/install
+
+Name: flypulator_control_plugin
+Description: Description of flypulator_control_plugin
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/avalon/catkin_ws/install/lib 
+Requires: 

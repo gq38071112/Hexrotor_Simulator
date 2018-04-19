@@ -1,0 +1,8 @@
+prefix=/home/avalon/catkin_ws/devel
+
+Name: control_plugin
+Description: Description of control_plugin
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/avalon/catkin_ws/devel/lib 
+Requires: 

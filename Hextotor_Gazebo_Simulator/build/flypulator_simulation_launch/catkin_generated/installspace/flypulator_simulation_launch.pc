@@ -1,0 +1,8 @@
+prefix=/home/avalon/catkin_ws/install
+
+Name: flypulator_simulation_launch
+Description: Description of flypulator_simulation_launch
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/avalon/catkin_ws/install/lib 
+Requires: 

@@ -1,0 +1,2 @@
+flypulator_aerodynamics:flypulator_control_plugin:flypulator_description:flypulator_sensor_data:flypulator_simulation_gazebo:flypulator_simulation_launch:flypulator_teleoperation:flypulator_wind:hector_gazebo_plugins
+-DCATKIN_DEVEL_PREFIX=/home/avalon/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/avalon/catkin_ws/install -G Unix Makefiles

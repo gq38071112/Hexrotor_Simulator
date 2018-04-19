@@ -1,0 +1,8 @@
+prefix=/home/avalon/catkin_ws/devel
+
+Name: aerodynamics
+Description: Description of aerodynamics
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/avalon/catkin_ws/devel/lib 
+Requires: 
