@@ -148,21 +148,6 @@ namespace gazebo
   this->link4 = _model->GetChildLink("blade_Link4");
   this->link5 = _model->GetChildLink("blade_Link5");
   this->link6 = _model->GetChildLink("blade_Link6");
-  // Setup a P-controller, with a gain of 0.01.when gain  is more than 0.01,the model will brocken in gazebo
-  this->pid = common::PID(0.00001, 0, 0);
-  // Apply the P-controller to the joint. only alternative option, easy to crash
-  this->model->GetJointController()->SetVelocityPID(
-      this->joint1->GetScopedName(), this->pid);
-this->model->GetJointController()->SetVelocityPID(
-      this->joint2->GetScopedName(), this->pid);
-this->model->GetJointController()->SetVelocityPID(
-      this->joint3->GetScopedName(), this->pid);
-this->model->GetJointController()->SetVelocityPID(
-      this->joint4->GetScopedName(), this->pid);
-this->model->GetJointController()->SetVelocityPID(
-      this->joint5->GetScopedName(), this->pid);
-this->model->GetJointController()->SetVelocityPID(
-      this->joint6->GetScopedName(), this->pid);
 //calculation of constants
 m=this->link0->GetInertial()->GetMass();
 s=(N*c)/(pi*R);  //rotor solidity
@@ -660,35 +645,6 @@ a6=pi+atan(Vyy6/Vxx6);
 
   moment_R6x=momentR6*cos(a6);
   moment_R6y=momentR6*sin(a6);
-  //battery model
-double N1,N2,N3,N4,N5,N6;//Motorspeed(RPM/s)
-double M1,M2,M3,M4,M5,M6;//proprller torque
-double Um1,Um2,Um3,Um4,Um5,Um6;//motor equivalent voltage
-double Im1,Im2,Im3,Im4,Im5,Im6;//motor equivalent current
-N1=60*vel_1/pi;//unit:RPM
-N2=60*vel_2/pi;
-N3=60*vel_3/pi;
-N4=60*vel_4/pi;
-N5=60*vel_5/pi;
-N6=60*vel_6/pi;
-M1=abs(moment_1);
-M2=abs(moment_2);
-M3=abs(moment_3);
-M4=abs(moment_4);
-M5=abs(moment_5);
-M6=abs(moment_6);
-Um1=(((M1*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*Rm+(Um0-Im0*Rm)*N1/(Kv0*Um0))*di_force1;
-Im1=((M1*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*di_force1;
-Um2=(((M2*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*Rm+(Um0-Im0*Rm)*N2/(Kv0*Um0))*di_force2;
-Im2=((M2*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*di_force2;
-Um3=(((M3*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*Rm+(Um0-Im0*Rm)*N3/(Kv0*Um0))*di_force3;
-Im3=((M3*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*di_force3;
-Um4=(((M4*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*Rm+(Um0-Im0*Rm)*N4/(Kv0*Um0))*di_force4;
-Im4=((M4*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*di_force4;
-Um5=(((M5*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*Rm+(Um0-Im0*Rm)*N5/(Kv0*Um0))*di_force5;
-Im5=((M5*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*di_force5;
-Um6=(((M6*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*Rm+(Um0-Im0*Rm)*N6/(Kv0*Um0))*di_force6;
-Im6=((M6*Kv0*Um0)/(9.55*(Um0-Im0*Rm))+Im0)*di_force6;
 double ratio1,ratio2,ratio3,ratio4,ratio5,ratio6;
 ratio1=-3*R*CQ1*Sgn(this->link1->GetRelativeAngularVel().z)/(s*a*pa*pow(B,3))*di_force1;
 ratio2=-3*R*CQ2*Sgn(this->link2->GetRelativeAngularVel().z)/(s*a*pa*pow(B,3))*di_force2;
@@ -912,29 +868,17 @@ this->link6->AddRelativeTorque(math::Vector3(moment_R6x, moment_R6y, moment_6));
 //apply velocity to joints with 3 metnods
 public: void SetVelocity()
 {
-  /*this->model->GetJointController()->SetVelocityTarget(
-      this->joint1->GetScopedName(), vel1*di1);//set joints velocity*/
-  //this->joint1->SetVelocity(0, vel1*di1);
+  
   this->joint1->SetParam("vel", 0, vel_1*di_vel1);
-  /*this->model->GetJointController()->SetVelocityTarget(
-      this->joint2->GetScopedName(), vel2*di2);*/
-  //this->joint2->SetVelocity(0, vel2*di2);
+  
   this->joint2->SetParam("vel", 0, vel_2*di_vel2);
-  /*this->model->GetJointController()->SetVelocityTarget(
-      this->joint3->GetScopedName(), vel3*di3);*/
+  
   this->joint3->SetParam("vel", 0, vel_3*di_vel3);
-  //this->joint3->SetVelocity(0, vel3*di3);
-  /*this->model->GetJointController()->SetVelocityTarget(
-      this->joint4->GetScopedName(), vel4*di4);*/
-  //this->joint4->SetVelocity(0, vel4*di4);
+  
   this->joint4->SetParam("vel", 0, vel_4*di_vel4);
-  /*this->model->GetJointController()->SetVelocityTarget(
-      this->joint5->GetScopedName(), vel5*di5);*/
-  //this->joint5->SetVelocity(0, vel5*di5);
+  
   this->joint5->SetParam("vel", 0, vel_5*di_vel5);
-  /*this->model->GetJointController()->SetVelocityTarget(
-      this->joint6->GetScopedName(), vel6*di6);*/
-  //this->joint6->SetVelocity(0, vel6*di6);
+ 
   this->joint6->SetParam("vel", 0, vel_6*di_vel6);
 }
 
@@ -946,8 +890,8 @@ private: void readParamsFromServer()
 
  this->rosNode->param("rotor_number", N, N);
  this->rosNode->param("blade_chord_width", c, c);
- this->rosNode->param("blade_radius", R, R);//in this computer only three parameters can be read
- /*this->rosNode->param("2D_lift_curve_slope", a, a);
+ this->rosNode->param("blade_radius", R, R);
+ this->rosNode->param("2D_lift_curve_slope", a, a);
  this->rosNode->param("profile_inclination_angle", th0, th0);
  this->rosNode->param("radial_inclination_change", thtw, thtw);
  this->rosNode->param("TLF", B, B);
@@ -966,7 +910,7 @@ private: void readParamsFromServer()
  this->rosNode->param("KV_value", Kv0, Kv0);
  this->rosNode->param("nominal_no_load_voltage", Um0, Um0);
  this->rosNode->param("nominal_no_load_current", Im0, Im0);
- this->rosNode->param("motor_resitance", Rm, Rm);*/
+ this->rosNode->param("motor_resitance", Rm, Rm);
 }
 /// \brief Pointer to the model.
 private: physics::ModelPtr model;
@@ -1004,13 +948,10 @@ private: ros::CallbackQueue rosQueue;
 
 /// \brief A thread the keeps running the rosQueue
 private: std::thread rosQueueThread;
-/// \brief A PID controller for the joint.
-private: common::PID pid;
-private: std::vector<common::PID> controllers;
-private: common::Time lastSimTime;
+
 private: ros::Publisher pub_ratio;
 
-//private: gazebo::sensors::RaySensorPtr ray_sensor;
+
   };
 
   // Tell Gazebo about this plugin, so that Gazebo can call Load on this plugin.
