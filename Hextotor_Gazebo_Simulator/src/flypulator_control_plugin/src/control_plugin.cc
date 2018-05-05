@@ -232,7 +232,7 @@ public: void OnUpdate(const common::UpdateInfo & _info)
  double Jxx,Jyy,Jzz;
  Jxx=this->link0->GetInertial()->GetIXX();
  Jyy=this->link0->GetInertial()->GetIYY();
- Jzz=this->link0->GetInertial()->GetIZZ();*/
+ Jzz=this->link0->GetInertial()->GetIZZ();
  double a_x,a_y,a_z,Wa_x,Wa_y,Wa_z;
  double a_xB,a_yB,a_zB,Wa_xB,Wa_yB,Wa_zB;
 /*this->setPID(6,0,0,0,50);
