@@ -222,12 +222,12 @@ public: void OnUpdate(const common::UpdateInfo & _info)
  modelAngularVel_y = this->link0->GetWorldAngularVel().y;
  modelAngularVel_z = this->link0->GetWorldAngularVel().z;
  //get error for PID controller
- linearError_x=(0-modelLinearVel_x);
- linearError_y=(0-modelLinearVel_y);
- linearError_z=(0-modelLinearVel_z);
- angularError_x=(0-modelAngularVel_x);
- angularError_y=(0-modelAngularVel_y);
- angularError_z=(0-modelAngularVel_z);
+ linearError_x=(modelLinearVel_x-Vx_input);
+ linearError_y=(modelLinearVel_y-Vy_input);
+ linearError_z=(modelLinearVel_z-Vz_input);
+ angularError_x=(modelAngularVel_x-Wx_input);
+ angularError_y=(modelAngularVel_y-Wy_input);
+ angularError_z=(modelAngularVel_z-Wz_input);
  //get inertial in body coordinate
  double Jxx,Jyy,Jzz;
  Jxx=this->link0->GetInertial()->GetIXX();
@@ -235,13 +235,6 @@ public: void OnUpdate(const common::UpdateInfo & _info)
  Jzz=this->link0->GetInertial()->GetIZZ();
  double a_x,a_y,a_z,Wa_x,Wa_y,Wa_z;
  double a_xB,a_yB,a_zB,Wa_xB,Wa_yB,Wa_zB;
-/*this->setPID(6,0,0,0,50);
-a_x=this->PIDController(linearError_x);
-a_y=this->PIDController(linearError_y);
-a_z=this->PIDController(linearError_z);
-Wa_x=this->PIDController(angularError_x);
-Wa_y=this->PIDController(angularError_y);
-Wa_z=this->PIDController(angularError_z);*/
  a_x=this->controllers[0].Update(linearError_x, dt);
  Wa_x=this->controllers[1].Update(angularError_x, dt);
  a_y=this->controllers[2].Update(linearError_y, dt);
