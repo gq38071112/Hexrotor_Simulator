@@ -29,7 +29,7 @@ Installing these packages in Ubntu 16.4 with:$sudo apt-get install ros-kinetic-<
 folder in the drone package, add gazebo and plugin tags in urdf file and then open the terminal in ROS workspace and run:
 $catkin_make                             (package complied£©
 $.~/catkin_ws/devel/setup.bash           (attached to the environment)
-$roslaunch drone gazebo.launch         £¨start all the useful nodes at the same time)
+$roslaunch flypulator_simulation_launch gazebo.launch         £¨start all the useful nodes at the same time)
 Sometimes Gazebo will crash. Just repeat the third command and try again, then it would work.
 
 7.By joystick configuration, first connect a Linux supported joystick to computer,then open the terminal and type in:
