@@ -27,9 +27,9 @@ Installing these packages in Ubntu 16.4 with:$sudo apt-get install ros-kinetic-<
 
 6.To insert new CAD model in simulator a URDF file of the robot and the meshes in STL format are needed. Put the URDF file in the urdf folder and the STL files in the meshes 
 folder in the drone package, add gazebo and plugin tags in urdf file and then open the terminal in ROS workspace and run:
-$catkin_make                             (package complied£©
+$catkin_make                             (package compliedÂ£Â©
 $.~/catkin_ws/devel/setup.bash           (attached to the environment)
-$roslaunch drone gazebo2.launch         £¨start all the useful nodes at the same time)
+$roslaunch drone gazebo.launch         Â£Â¨start all the useful nodes at the same time)
 Sometimes Gazebo will crash. Just repeat the third command and try again, then it would work.
 
 7.By joystick configuration, first connect a Linux supported joystick to computer,then open the terminal and type in:
